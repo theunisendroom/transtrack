@@ -1,0 +1,39 @@
+<div *ngIf="currentUserLocation.lat && currentUserLocation.lng">
+  <agm-map [latitude]="currentUserLocation.lat" [longitude]="currentUserLocation.lng" (mapRightClick)="showOptions($event, true)"
+    (mapClick)="showOptions($event, false)" [zoom]="13">
+    <agm-marker [latitude]="currentUserLocation.lat" [longitude]="currentUserLocation.lng">
+      <agm-info-window>
+        <h3>
+          <strong>Howdy!</strong>
+        </h3>
+        <p>You are here</p>
+      </agm-info-window>
+    </agm-marker>
+
+    <agm-marker *ngFor="let marker of locationsObservable | async" [latitude]="marker.l[0]" [longitude]="marker.l[1]">
+      <agm-info-window>
+        <h3>
+          <strong>Location Details</strong>
+        </h3>
+        <p>You are far from this point</p>
+      </agm-info-window>
+    </agm-marker>
+
+    <agm-marker *ngIf="showOptionsBoolean" [latitude]="optionsLocation.lat" [longitude]="optionsLocation.lng"
+      [iconUrl]="'/assets/icons/pindrop3.svg'">
+      <agm-info-window>
+        <h3 *ngFor="let option of options">
+          <strong>{{option}}</strong>
+        </h3>
+      </agm-info-window>
+    </agm-marker>
+  </agm-map>
+</div>
+<div class="container" *ngIf="!currentUserLocation.lat || !currentUserLocation.lng">
+  <div class="row">
+    <div class="animationload">
+      <div class="osahanloading"></div>
+      <h2 class="text-center">Loading map...</h2>
+    </div>
+  </div>
+</div>

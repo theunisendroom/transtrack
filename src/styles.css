@@ -1,1 +1,21 @@
 /* You can add global styles to this file, and also import other style files */
+@import  "~bootstrap/dist/css/bootstrap.css";
+
+body {
+    padding-top: 5rem;
+}
+.starter-template {
+    padding: 3rem 1.5rem;
+    text-align: center;
+}
+my-gmap {
+    width:50%;
+    height:50px;
+}
+
+input.ng-invalid.ng-dirty{
+    border: 1px solid red;
+}
+button:hover,a.btn:hover{
+    cursor: pointer;
+}
